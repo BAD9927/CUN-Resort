@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - Hotel Paradise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">Hotel CUN Resort</div>
+        <ul>
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contáctenos</a></li>
+            <li><a href="../Modelo/administracion-db.php">Administración</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="about-section">
+    <h1>Quiénes Somos</h1>
+
+    <div class="carousel">
+        <button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carousel-button next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carousel-inner">
+            <div class="slide fade">
+                <img src="img/Fachada.jpg" alt="Hotel Fachada">
+                <div class="slide-caption">Nuestra hermosa fachada principal</div>
+            </div>
+            <div class="slide fade">
+                <img src="img/Piscina.jpg" alt="Piscina">
+                <div class="slide-caption">Piscina con vista al mar</div>
+            </div>
+            <div class="slide fade">
+                <img src="img/Restaurante-gourmet.jpg" alt="Restaurante">
+                <div class="slide-caption">Restaurante gourmet</div>
+            </div>
+            <div class="slide fade">
+                <img src="img/Habitacion-deluxe.jpg" alt="Habitación Deluxe">
+                <div class="slide-caption">Habitación Deluxe con vista panorámica</div>
+            </div>
+            <div class="slide fade">
+                <img src="img/Spa-y-centrobienestar.jpg" alt="Spa">
+                <div class="slide-caption">Spa y centro de bienestar</div>
+            </div>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+    </div>
+
+    <div class="about-content">
+        <h2>Nuestra Historia</h2>
+        <p>Hotel CUN Resort, fundado en 2019, es sinónimo de excelencia en hospitalidad. Ubicados en una de las zonas
+            más privilegiadas, ofrecemos una experiencia única combinando el lujo con el confort del hogar.</p>
+
+        <h2>Nuestra Misión</h2>
+        <p>Brindar experiencias memorables a nuestros huéspedes a través de un servicio excepcional, instalaciones de
+            primera clase y atención personalizada.</p>
+
+        <h2>Nuestra Visión</h2>
+        <p>Ser reconocidos como el hotel líder en experiencias turísticas, manteniendo los más altos estándares de
+            calidad y servicio.</p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Hotel CUN Resort. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    let slideIndex = 1;
+    let slideInterval;
+
+    function showSlides(n) {
+        const slides = document.getElementsByClassName("slide");
+        const dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) slideIndex = 1;
+        if (n < 1) slideIndex = slides.length;
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+
+    function moveSlide(n) {
+        clearInterval(slideInterval);
+        showSlides(slideIndex += n);
+        startAutoSlide();
+    }
+
+    function currentSlide(n) {
+        clearInterval(slideInterval);
+        showSlides(slideIndex = n);
+        startAutoSlide();
+    }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(() => {
+            slideIndex++;
+            showSlides(slideIndex);
+        }, 5000);
+    }
+
+    // Iniciar el carrusel
+    showSlides(slideIndex);
+    startAutoSlide();
+</script>
+</body>
+</html>
